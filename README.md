@@ -8,6 +8,8 @@ Technologies:
 - Autonomous System configuration
 - Administrative Distance tuning
 - Load Balancing
+- Unload Balancing
+- EIGRP Summarization 
 - Subnetting (/27, /30)
 
 The lab demonstrates routing between multiple city routers with optimized traffic distribution.
