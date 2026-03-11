@@ -1,5 +1,5 @@
 SRT
-enb
+en
 conf t
 int f1/0
 ip address 192.168.1.97 255.255.255.224
@@ -29,7 +29,7 @@ ip authen key-chain eigrp 10 ssit
 ip authen mode eigrp 10 md5
 
 
-
+--------------------------------------------------------------------------------------------
 
 
 AHM
@@ -45,17 +45,6 @@ int s0/0
 ip address 192.168.1.2 255.255.255.252
 no shutdown
 
-en
-conf t
-key chain ssit 
-key 10
-key-string Admin123
-
-en
-conf t
-int s0/1
-ip authen key-chain eigrp 10 ssit 
-ip authen mode eigrp 10 md5
 
 en
 conf t
@@ -65,6 +54,22 @@ network 192.168.1.4
 network 192.168.1.0
 no auto
 passive-interface f1/0
+
+
+en
+conf t
+key chain ssit 
+key 10
+key-string Admin123
+
+
+en
+conf t
+int s0/1
+ip authen key-chain eigrp 10 ssit 
+ip authen mode eigrp 10 md5
+
+----------------------------------------------------------------------------------------------------
 
 
 JAI
@@ -90,6 +95,7 @@ network 192.168.2.0
 no auto
 passive-interface f1/0
 
+------------------------------------------------------------------------------------------------------------------------
 
 NDA
 en
@@ -109,8 +115,7 @@ network 192.168.2.4
 no auto
 passive-interface f1/0
 
-
-
+------------------------------------------------------------------------------------------------------------------------
 
 NGP
 en
@@ -125,6 +130,17 @@ int s0/1
 ip address 192.168.4.5 255.255.255.252
 no shutdown
 
+en
+conf t
+router eigrp 10
+network 192.168.4.64
+network 192.168.4.4
+network 192.168.4.0
+no auto
+passive-interface f1/0
+
+------------------------------------------------------------------------------------------------------------------------
+
 PUN
 en
 conf t
@@ -137,6 +153,17 @@ no shutdown
 int s0/1
 ip address 192.168.3.6 255.255.255.252
 no shutdown
+
+en
+conf t
+router eigrp 10
+network 192.168.3.96
+network 192.168.3.4
+network 192.168.4.4
+no auto
+passive-interface f1/0
+
+------------------------------------------------------------------------------------------------------------------------
 
 MUM
 en
@@ -151,6 +178,16 @@ int s0/1
 ip address 192.168.3.5 255.255.255.252
 no shutdown
 
+en
+conf t
+router eigrp 10
+network 192.168.3.64
+network 192.168.3.4
+network 192.168.3.0
+no auto
+passive-interface f1/0
+
+------------------------------------------------------------------------------------------------------------------------
 
 BLR
 en
@@ -170,6 +207,51 @@ no shutdown
 int s0/3
 ip address 192.168.4.1 255.255.255.252
 no shutdown
+
+
+en
+conf t
+router eigrp 10
+network 192.168.1.0
+network 192.168.1.32
+network 192.168.2.0
+network 192.168.3.0
+network 192.168.4.0
+no auto
+passive-interface f1/0
+
+
+
+
+en
+conf t
+int s0/0
+ip summary-address eigrp 10 192.168.2.0 255.255.255.128
+ip summary-address eigrp 10 192.168.3.0 255.255.255.128
+ip summary-address eigrp 10 192.168.4.0 255.255.255.128
+
+
+en
+conf t
+int s0/1
+ip summary-address eigrp 10 192.168.1.0 255.255.255.128
+ip summary-address eigrp 10 192.168.3.0 255.255.255.128
+ip summary-address eigrp 10 192.168.4.0 255.255.255.128
+
+en
+conf t
+int s0/2
+ip summary-address eigrp 10 192.168.2.0 255.255.255.128
+ip summary-address eigrp 10 192.168.1.0 255.255.255.128
+ip summary-address eigrp 10 192.168.4.0 255.255.255.128
+
+en
+conf t
+int s0/3
+ip summary-address eigrp 10 192.168.2.0 255.255.255.128
+ip summary-address eigrp 10 192.168.3.0 255.255.255.128
+ip summary-address eigrp 10 192.168.1.0 255.255.255.128
+------------------------------------------------------------------------------------------------------------------------
 
 
 
